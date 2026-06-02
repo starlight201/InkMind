@@ -1,0 +1,203 @@
+﻿.app-shell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 22px 28px 24px;
+  overflow: hidden;
+}
+
+.app-shell::before,
+.app-shell::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  filter: blur(3px);
+  opacity: 0.16;
+  border: 1px solid #4f6359;
+  border-radius: 50%;
+}
+
+.app-shell::before {
+  right: -120px;
+  bottom: -160px;
+  width: 470px;
+  height: 270px;
+}
+
+.app-shell::after {
+  right: 32px;
+  bottom: -205px;
+  width: 690px;
+  height: 350px;
+}
+
+.topbar {
+  display: flex;
+  flex: 0 0 92px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-seal {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  color: var(--red);
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  place-items: center;
+  border: 2px solid var(--red);
+  box-shadow: inset 0 0 0 4px rgba(189, 73, 61, 0.08);
+}
+
+.brand-kicker,
+.eyebrow,
+.mock-badge,
+.page-no {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.brand-title {
+  margin-top: 4px;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+  padding: 7px;
+  background: rgba(255, 253, 247, 0.78);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 130px;
+  padding: 14px 16px;
+  color: #62706c;
+  font-size: 15px;
+  font-weight: 700;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  transition: 220ms ease;
+}
+
+.nav-button:hover {
+  color: var(--red);
+  background: rgba(189, 73, 61, 0.06);
+}
+
+.nav-button.active {
+  color: #fffaf3;
+  background: var(--red);
+  box-shadow: 0 8px 18px rgba(189, 73, 61, 0.2);
+}
+
+.nav-button.active .page-no {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.page {
+  display: none;
+  width: 100%;
+  min-height: 0;
+  animation: page-in 380ms ease both;
+}
+
+.page.active {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-header {
+  display: flex;
+  flex: 0 0 92px;
+  align-items: end;
+  justify-content: space-between;
+  padding: 4px 2px 18px;
+}
+
+.page-header h1 {
+  margin: 6px 0 0;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+  font-size: clamp(30px, 2.15vw, 42px);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.header-side {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 4px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.mock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: #8e5148;
+  font-size: 12px;
+  letter-spacing: 0;
+  border: 1px solid rgba(189, 73, 61, 0.17);
+  border-radius: 999px;
+  background: rgba(249, 236, 228, 0.76);
+}
+
+.mock-badge::before {
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.content {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  gap: 16px;
+}
+

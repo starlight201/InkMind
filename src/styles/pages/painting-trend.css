@@ -1,0 +1,74 @@
+﻿.trend-layout {
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.trend-stats {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 0;
+}
+
+.stat-card {
+  position: relative;
+  min-height: 150px;
+  padding: 22px;
+}
+
+.stat-card::after {
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
+  color: rgba(189, 73, 61, 0.1);
+  font-family: "Noto Serif SC", serif;
+  font-size: 68px;
+  content: attr(data-mark);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.stat-value {
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.stat-value small {
+  font-size: 20px;
+}
+
+.stat-foot {
+  margin-top: 8px;
+  color: #89918e;
+  font-size: 12px;
+}
+
+.trend-notes {
+  padding: 18px;
+}
+
+.trend-notes h3 {
+  margin: 0 0 8px;
+  color: var(--red);
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+}
+
+.trend-notes p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.trend-chart-wrap {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 18px 16px;
+}
+

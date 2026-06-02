@@ -1,0 +1,59 @@
+﻿:root {
+  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  color: #263230;
+  background: #eee7d8;
+  font-synthesis: none;
+  --paper: #f5f0e6;
+  --paper-light: rgba(255, 253, 247, 0.84);
+  --ink: #263230;
+  --muted: #6e7975;
+  --line: rgba(86, 76, 59, 0.15);
+  --red: #bd493d;
+  --red-soft: #e8bbb0;
+  --green: #43836f;
+  --blue: #4869b2;
+  --gold: #c99432;
+  --purple: #715da2;
+  --shadow: 0 12px 32px rgba(67, 56, 40, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  min-width: 1180px;
+  height: 100%;
+  min-height: 720px;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(188, 154, 117, 0.14), transparent 26%),
+    radial-gradient(circle at 8% 92%, rgba(133, 151, 124, 0.13), transparent 23%),
+    linear-gradient(135deg, #f6f1e7, #eee8dc);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: 0.24;
+  background-image:
+    linear-gradient(rgba(93, 79, 57, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 79, 57, 0.025) 1px, transparent 1px);
+  background-size: 5px 5px, 7px 7px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+

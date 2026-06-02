@@ -1,0 +1,8 @@
+@import "./base.css";
+@import "./layout.css";
+@import "./pages/mental-status.css";
+@import "./pages/therapy.css";
+@import "./pages/painting-trend.css";
+@import "./pages/technique.css";
+@import "./pages/comparison.css";
+@import "./components.css";

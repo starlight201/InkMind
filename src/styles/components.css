@@ -1,0 +1,197 @@
+﻿.card {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-light);
+  box-shadow: var(--shadow);
+}
+
+.card-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 0;
+}
+
+.card-heading h2,
+.card-heading h3 {
+  margin: 0;
+  font-family: "Noto Serif SC", "STKaiti", serif;
+}
+
+.card-heading h2 {
+  font-size: 23px;
+}
+
+.card-heading h3 {
+  font-size: 18px;
+}
+
+.card-heading p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  place-items: center;
+  background: rgba(29, 35, 33, 0.38);
+  backdrop-filter: blur(4px);
+  transition: 180ms ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  position: relative;
+  width: min(700px, 92vw);
+  padding: 28px;
+  border: 1px solid rgba(189, 73, 61, 0.2);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 96% 4%, rgba(189, 73, 61, 0.08), transparent 26%),
+    #fbf7ef;
+  box-shadow: 0 24px 64px rgba(39, 35, 29, 0.23);
+  transform: scale(0.98);
+  transition: 180ms ease;
+}
+
+.modal-backdrop.open .modal {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  color: #806f68;
+  font-size: 19px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.modal-kicker {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.modal h2 {
+  margin: 9px 0 6px;
+  font-family: "Noto Serif SC", serif;
+  font-size: 28px;
+}
+
+.modal-subtitle {
+  color: #7b8581;
+  font-size: 14px;
+}
+
+.modal-body {
+  margin-top: 20px;
+  color: #58635f;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.modal-metric {
+  padding: 12px;
+  border: 1px solid rgba(86, 76, 59, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.64);
+}
+
+.modal-metric span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal-metric strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--red);
+  font-size: 22px;
+}
+
+.modal-note {
+  margin-top: 12px;
+  padding: 11px 12px;
+  color: #685b55;
+  font-size: 13px;
+  line-height: 1.7;
+  border-left: 3px solid var(--red);
+  background: rgba(232, 187, 176, 0.18);
+}
+
+@media (max-height: 820px) {
+  .app-shell {
+    padding-top: 14px;
+    padding-bottom: 16px;
+  }
+
+  .topbar {
+    flex-basis: 78px;
+  }
+
+  .brand-seal {
+    width: 58px;
+    height: 58px;
+    font-size: 17px;
+  }
+
+  .brand-title {
+    font-size: 30px;
+  }
+
+  .page-header {
+    flex-basis: 78px;
+    padding-bottom: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 31px;
+  }
+
+  .status-layout {
+    grid-template-rows: minmax(270px, 1fr) 164px;
+  }
+
+  .problem-card p {
+    -webkit-line-clamp: 3;
+  }
+
+  .stat-card {
+    min-height: 120px;
+  }
+}

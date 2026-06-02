@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# Source requirement document and Word lock files
+修改.doc
+~$*.doc
+
+# Local logs and QA artifacts
+*.log
+qa-*.png
+
+# The runtime uses the public copy.
+6AC7416D28C9568B2FDC3A7368A60A26.jpg

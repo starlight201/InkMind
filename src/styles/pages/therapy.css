@@ -1,0 +1,83 @@
+﻿.therapy-layout {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.therapy-card,
+.trend-main-card,
+.comparison-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-tabs,
+.therapy-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(255, 253, 247, 0.72);
+}
+
+.filter-tab,
+.therapy-tab {
+  padding: 9px 14px;
+  color: #62706c;
+  font-size: 14px;
+  font-weight: 700;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  transition: 180ms ease;
+}
+
+.filter-tab:hover,
+.therapy-tab:hover,
+.filter-tab.active,
+.therapy-tab.active {
+  color: #fff;
+  background: var(--red);
+}
+
+.therapy-chart-wrap {
+  flex: 1;
+  min-height: 0;
+  padding: 0 22px;
+}
+
+.therapy-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0 7.4% 20px;
+}
+
+.therapy-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.info-button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+  place-items: center;
+  border: 1px solid var(--red);
+  border-radius: 50%;
+  background: rgba(255, 253, 247, 0.74);
+  transition: 180ms ease;
+}
+
+.info-button:hover {
+  color: #fff;
+  background: var(--red);
+  transform: scale(1.08);
+}
+
