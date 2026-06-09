@@ -1,4 +1,5 @@
 import { paintingTrend } from "../data/mock-data.js";
+import { formatNumber, formatPercent } from "../utils/format-number.js";
 import { chartTooltip } from "./chart-theme.js";
 
 export function renderPaintingNodeChart(chart) {
@@ -11,10 +12,10 @@ export function renderPaintingNodeChart(chart) {
     tooltip: {
       ...chartTooltip(),
       trigger: "item",
-      formatter: ({ data, seriesName, dataIndex }) => {
+      formatter: ({ dataIndex, seriesName, value }) => {
         const row = paintingTrend[dataIndex];
-        if (!row) return `${seriesName}<br/><strong>${data}</strong>`;
-        return `<strong>${row.year} 年 · ${row.stage}</strong><br/>参与人数：${row.participants.toLocaleString()} 人<br/>满意度：${row.satisfaction}%<br/>情绪效价提升：d ≈ ${row.effectSize}`;
+        if (!row) return `${seriesName}<br/><strong>${formatNumber(value)}</strong>`;
+        return `<strong>${row.year} 年 · ${row.stage}</strong><br/>参与人数：${formatNumber(row.participants)} 人<br/>满意度：${formatPercent(row.satisfaction)}<br/>情绪效价提升：d ≈ ${formatNumber(row.effectSize)}`;
       },
     },
     grid: { left: 76, right: 46, top: 62, bottom: 58 },
@@ -30,7 +31,7 @@ export function renderPaintingNodeChart(chart) {
       type: "value",
       name: "人数",
       nameTextStyle: { color: "#77817d", padding: [0, 0, 8, 0] },
-      axisLabel: { color: "#77817d", formatter: (value) => value.toLocaleString() },
+      axisLabel: { color: "#77817d", formatter: (value) => formatNumber(value) },
       splitLine: { lineStyle: { color: "rgba(96,106,100,.11)", type: "dashed" } },
     },
     series: [
@@ -55,7 +56,7 @@ export function renderPaintingNodeChart(chart) {
             show: true,
             position: "top",
             distance: 8,
-            formatter: `${item.participants.toLocaleString()}人`,
+            formatter: `${formatNumber(item.participants)}人`,
             color: "#5e6864",
             fontSize: 11,
           },

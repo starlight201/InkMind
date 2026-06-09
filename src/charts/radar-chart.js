@@ -1,4 +1,5 @@
 import { radarComparison, radarDimensions, therapyCatalog } from "../data/mock-data.js";
+import { formatNumber } from "../utils/format-number.js";
 import { chartTooltip } from "./chart-theme.js";
 
 export function renderRadarChart(chart, selectedTherapy) {
@@ -6,7 +7,12 @@ export function renderRadarChart(chart, selectedTherapy) {
   chart.setOption(
     {
       color: ["#bd493d", "#4869b2"],
-      tooltip: { ...chartTooltip(), trigger: "item" },
+      tooltip: {
+        ...chartTooltip(),
+        trigger: "item",
+        formatter: ({ name, value }) =>
+          [`<strong>${name}</strong>`, ...radarDimensions.map((item, index) => `${item.name}: ${formatNumber(value[index])}`)].join("<br/>"),
+      },
       legend: { bottom: 10, left: "center", textStyle: { color: "#64706c", fontSize: 13 } },
       radar: {
         center: ["50%", "48%"],

@@ -1,4 +1,5 @@
 import { radarComparison, radarDimensions, therapyCatalog } from "../data/mock-data.js";
+import { formatNumber } from "../utils/format-number.js";
 
 export function renderRadarSummary(selectedTherapy) {
   const therapy = therapyCatalog.find((item) => item.key === selectedTherapy);
@@ -10,7 +11,7 @@ export function renderRadarSummary(selectedTherapy) {
       (item, index) => `
         <div class="summary-row">
           <div class="summary-row-head"><span>${item.name}</span><span>${item.direction}</span></div>
-          <div class="summary-values"><strong>国画 ${chinese[index]}</strong><span>vs</span><em>${therapy.shortName} ${traditional[index]}</em></div>
+          <div class="summary-values"><strong>国画 ${formatNumber(chinese[index])}</strong><span>vs</span><em>${therapy.shortName} ${formatNumber(traditional[index])}</em></div>
         </div>`,
     )
     .join("");

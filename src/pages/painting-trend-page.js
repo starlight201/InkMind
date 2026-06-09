@@ -1,6 +1,7 @@
 import { paintingTrend } from "../data/mock-data.js";
-import { state } from "../state.js";
 import { renderPageHeader } from "../components/header.js";
+import { state } from "../state.js";
+import { formatNumber, formatPercent } from "../utils/format-number.js";
 
 export function renderPaintingTrendPage() {
   const total = paintingTrend.reduce((sum, item) => sum + item.participants, 0);
@@ -12,12 +13,12 @@ export function renderPaintingTrendPage() {
         <aside class="trend-stats">
           <article class="card stat-card" data-mark="人">
             <div class="stat-label">累计参与人数</div>
-            <div class="stat-value">${total.toLocaleString()}<small> 人</small></div>
+            <div class="stat-value">${formatNumber(total)}<small> 人</small></div>
             <div class="stat-foot">2016-2025 年模拟统计</div>
           </article>
           <article class="card stat-card" data-mark="满">
             <div class="stat-label">最新满意度</div>
-            <div class="stat-value">${latest.satisfaction}<small>%</small></div>
+            <div class="stat-value">${formatPercent(latest.satisfaction)}</div>
             <div class="stat-foot">${latest.year} 年体验反馈</div>
           </article>
           <article class="card trend-notes">
@@ -26,7 +27,7 @@ export function renderPaintingTrendPage() {
           </article>
         </aside>
         <article class="card trend-main-card">
-          <div class="card-heading"><div><h2>年份节点趋势</h2><p>纵坐标为参与人数，标签显示各年份参与规模。</p></div></div>
+          <div class="card-heading"><div><h2>年份节点趋势</h2><p>纵坐标为参与人数，扇形节点表示满意度与参与规模。</p></div></div>
           <div class="trend-chart-wrap"><div id="painting-trend-chart" class="chart"></div></div>
         </article>
       </div>
