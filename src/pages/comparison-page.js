@@ -5,7 +5,7 @@ import { renderPageHeader } from "../components/header.js";
 export function renderComparisonPage() {
   return `
     <section class="page ${state.activePage === "comparison" ? "active" : ""}" data-page-panel="comparison">
-      ${renderPageHeader("多维观察干预方式差异", "中国画疗法与传统疗法综合对比", "红蓝雷达叠加，面积越大表示综合表现越优")}
+      ${renderPageHeader("多维观察干预方式差异", "各类疗法横评", "红蓝雷达叠加，面积越大表示综合表现越优")}
       <div class="content comparison-layout">
         <article class="card comparison-card">
           <div class="card-heading">

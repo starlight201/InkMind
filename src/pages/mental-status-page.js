@@ -5,7 +5,7 @@ import { renderPageHeader } from "../components/header.js";
 export function renderMentalStatusPage() {
   return `
     <section class="page ${state.activePage === "status" ? "active" : ""}" data-page-panel="status">
-      ${renderPageHeader("中国画美育疗法数据可视化平台", "大学生心理问题现状总览", "心理问题占比与人数变化趋势")}
+      ${renderPageHeader("中国画美育疗法数据可视化平台", "心理现状统计", "心理问题占比与人数变化趋势")}
       <div class="content status-layout">
         <article class="card">
           <div class="card-heading"><div><h2>2025 年四类心理问题患病率</h2><p>四类问题可能重叠，患病率不做合计。点击后聚焦对应趋势。</p></div></div>

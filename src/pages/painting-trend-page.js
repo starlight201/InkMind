@@ -7,7 +7,7 @@ export function renderPaintingTrendPage() {
   const latest = paintingTrend.at(-1);
   return `
     <section class="page ${state.activePage === "trend" ? "active" : ""}" data-page-panel="trend">
-      ${renderPageHeader("中国画美育疗法发展观察", "中国画美育疗法趋势", "参与人数与满意度的十年变化")}
+      ${renderPageHeader("中国画美育疗法发展观察", "国画疗愈调研", "参与人数与满意度的十年变化")}
       <div class="content trend-layout">
         <aside class="trend-stats">
           <article class="card stat-card" data-mark="人">
@@ -22,11 +22,11 @@ export function renderPaintingTrendPage() {
           </article>
           <article class="card trend-notes">
             <h3>十年观察</h3>
-            <p>节点外圈映射参与人数，内层朱砂扇形表示满意度。数据表同时记录年度发展阶段与情绪效价提升度。</p>
+            <p>折线展示年度参与人数增长，悬停节点可查看满意度、发展阶段与情绪效价提升度。</p>
           </article>
         </aside>
         <article class="card trend-main-card">
-          <div class="card-heading"><div><h2>年份节点趋势</h2><p>灰色外圈代表参与规模，朱砂内圈缺口表示满意度未满部分。</p></div></div>
+          <div class="card-heading"><div><h2>年份节点趋势</h2><p>纵坐标为参与人数，标签显示各年份参与规模。</p></div></div>
           <div class="trend-chart-wrap"><div id="painting-trend-chart" class="chart"></div></div>
         </article>
       </div>

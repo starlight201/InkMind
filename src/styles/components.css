@@ -164,9 +164,13 @@
     flex-basis: 78px;
   }
 
-  .brand-seal {
+  .brand-seal,
+  .brand-logo {
     width: 58px;
     height: 58px;
+  }
+
+  .brand-seal {
     font-size: 17px;
   }
 

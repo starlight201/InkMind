@@ -9,9 +9,9 @@ export const state = {
 };
 
 export const navItems = [
-  ["status", "01", "心理现状"],
-  ["therapy", "02", "传统疗法"],
-  ["trend", "03", "国画趋势"],
-  ["technique", "04", "技法针对性"],
-  ["comparison", "05", "综合对比"],
+  ["status", "01", "心理现状统计"],
+  ["therapy", "02", "传统疗法对比"],
+  ["trend", "03", "国画疗愈调研"],
+  ["technique", "04", "画技对症详解"],
+  ["comparison", "05", "各类疗法横评"],
 ];

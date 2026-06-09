@@ -16,7 +16,7 @@ export function renderMentalTrendChart(chart, selectedProblem) {
     },
     yAxis: {
       type: "value",
-      name: "人数（万人）",
+      name: "人数",
       nameTextStyle: { color: "#77817d" },
       axisLabel: { color: "#77817d", formatter: (value) => value.toLocaleString() },
       splitLine: { lineStyle: { color: "rgba(96,106,100,.11)", type: "dashed" } },

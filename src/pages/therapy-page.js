@@ -5,11 +5,11 @@ import { renderPageHeader } from "../components/header.js";
 export function renderTherapyPage() {
   return `
     <section class="page ${state.activePage === "therapy" ? "active" : ""}" data-page-panel="therapy">
-      ${renderPageHeader("传统心理干预方式横向观察", "传统心理疗法优缺点分析", "按心理问题查看三项效果指标")}
+      ${renderPageHeader("传统心理干预方式横向观察", "传统疗法对比", "按心理问题查看三项效果指标")}
       <div class="content therapy-layout">
         <article class="card therapy-card">
           <div class="card-heading">
-            <div><h2>同一心理问题下，传统疗法效果对比</h2><p>每种疗法包含改善率、情绪效价指数（效应量 d × 100）和满意度。</p></div>
+            <div><h2>同一心理问题下，传统疗法效果对比</h2><p>每种疗法包含改善率、情绪效价指数和满意度。</p></div>
             <div class="filter-tabs">${renderProblemTabs()}</div>
           </div>
           <div class="therapy-chart-wrap"><div id="therapy-chart" class="chart"></div></div>

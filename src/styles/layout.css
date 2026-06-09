@@ -7,32 +7,6 @@
   overflow: hidden;
 }
 
-.app-shell::before,
-.app-shell::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-  filter: blur(3px);
-  opacity: 0.16;
-  border: 1px solid #4f6359;
-  border-radius: 50%;
-}
-
-.app-shell::before {
-  right: -120px;
-  bottom: -160px;
-  width: 470px;
-  height: 270px;
-}
-
-.app-shell::after {
-  right: 32px;
-  bottom: -205px;
-  width: 690px;
-  height: 350px;
-}
-
 .topbar {
   display: flex;
   flex: 0 0 92px;
@@ -45,6 +19,13 @@
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+.brand-logo {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 8px rgba(42, 32, 22, 0.12));
 }
 
 .brand-seal {
@@ -93,7 +74,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 130px;
+  min-width: 124px;
   padding: 14px 16px;
   color: #62706c;
   font-size: 15px;

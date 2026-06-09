@@ -1,10 +1,10 @@
-﻿:root {
+:root {
   font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
   color: #263230;
-  background: #eee7d8;
+  background: #e6d6b6;
   font-synthesis: none;
-  --paper: #f5f0e6;
-  --paper-light: rgba(255, 253, 247, 0.84);
+  --paper: #f2e5c8;
+  --paper-light: rgba(255, 252, 243, 0.78);
   --ink: #263230;
   --muted: #6e7975;
   --line: rgba(86, 76, 59, 0.15);
@@ -34,9 +34,9 @@ body,
 body {
   overflow: hidden;
   background:
-    radial-gradient(circle at 82% 8%, rgba(188, 154, 117, 0.14), transparent 26%),
-    radial-gradient(circle at 8% 92%, rgba(133, 151, 124, 0.13), transparent 23%),
-    linear-gradient(135deg, #f6f1e7, #eee8dc);
+    linear-gradient(rgba(242, 230, 204, 0.12), rgba(242, 230, 204, 0.12)),
+    url("/xuanzhi.png") center / cover fixed no-repeat,
+    #e6d6b6;
 }
 
 body::before {
@@ -45,15 +45,30 @@ body::before {
   z-index: -1;
   content: "";
   pointer-events: none;
-  opacity: 0.24;
+  opacity: 0.18;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.62), transparent 22%),
+    radial-gradient(circle at 82% 86%, rgba(100, 73, 35, 0.28), transparent 31%);
+}
+
+body::after {
+  position: fixed;
+  inset: 18px;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: 0.14;
   background-image:
-    linear-gradient(rgba(93, 79, 57, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(93, 79, 57, 0.025) 1px, transparent 1px);
-  background-size: 5px 5px, 7px 7px;
+    url("data:image/svg+xml,%3Csvg width='180' height='112' viewBox='0 0 180 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23745e37' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 78h52c8 0 8-16 0-16H58c-4 0-6-5-3-8 9-11 26-8 30 6 13-15 39-8 40 13h37'/%3E%3Cpath d='M34 92h86c10 0 12-18 1-21'/%3E%3Cpath d='M104 50c7-18 36-18 44 1'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='180' height='112' viewBox='0 0 180 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23745e37' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 78h52c8 0 8-16 0-16H58c-4 0-6-5-3-8 9-11 26-8 30 6 13-15 39-8 40 13h37'/%3E%3Cpath d='M34 92h86c10 0 12-18 1-21'/%3E%3Cpath d='M104 50c7-18 36-18 44 1'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='180' height='112' viewBox='0 0 180 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23745e37' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 78h52c8 0 8-16 0-16H58c-4 0-6-5-3-8 9-11 26-8 30 6 13-15 39-8 40 13h37'/%3E%3Cpath d='M34 92h86c10 0 12-18 1-21'/%3E%3Cpath d='M104 50c7-18 36-18 44 1'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='180' height='112' viewBox='0 0 180 112' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23745e37' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 78h52c8 0 8-16 0-16H58c-4 0-6-5-3-8 9-11 26-8 30 6 13-15 39-8 40 13h37'/%3E%3Cpath d='M34 92h86c10 0 12-18 1-21'/%3E%3Cpath d='M104 50c7-18 36-18 44 1'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: left top, right top, left bottom, right bottom;
+  background-repeat: no-repeat;
+  background-size: 180px 112px;
 }
 
 button {
   font: inherit;
   cursor: pointer;
 }
-

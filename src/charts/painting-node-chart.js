@@ -5,62 +5,59 @@ export function renderPaintingNodeChart(chart) {
   const participants = paintingTrend.map((item) => item.participants);
   const min = Math.min(...participants);
   const max = Math.max(...participants);
-  const sizeFor = (value) => 70 + ((value - min) / (max - min)) * 24;
+  const sizeFor = (value) => 54 + ((value - min) / (max - min)) * 28;
 
   chart.setOption({
     tooltip: {
       ...chartTooltip(),
       trigger: "item",
-      formatter: ({ data, seriesName }) => {
-        if (!Array.isArray(data?.value)) return `${seriesName}<br/><strong>${data}%</strong>`;
-        return `<strong>${data.value[0]} 年 · ${data.stage}</strong><br/>参与人数：${data.value[2].toLocaleString()} 人<br/>满意度：${data.value[1]}%<br/>情绪效价提升：d ≈ ${data.effectSize}`;
+      formatter: ({ data, seriesName, dataIndex }) => {
+        const row = paintingTrend[dataIndex];
+        if (!row) return `${seriesName}<br/><strong>${data}</strong>`;
+        return `<strong>${row.year} 年 · ${row.stage}</strong><br/>参与人数：${row.participants.toLocaleString()} 人<br/>满意度：${row.satisfaction}%<br/>情绪效价提升：d ≈ ${row.effectSize}`;
       },
     },
-    grid: { left: 62, right: 66, top: 82, bottom: 72 },
+    grid: { left: 76, right: 46, top: 62, bottom: 58 },
     xAxis: {
       type: "category",
       boundaryGap: true,
       data: paintingTrend.map((item) => String(item.year)),
       axisTick: { show: false },
       axisLine: { lineStyle: { color: "#c9c6bb" } },
-      axisLabel: { color: "#77817d", margin: 18, fontSize: 13 },
+      axisLabel: { color: "#77817d", margin: 16, fontSize: 13 },
     },
     yAxis: {
       type: "value",
-      min: 0,
-      max: 100,
-      axisLabel: { color: "#77817d", formatter: "{value}%" },
+      name: "人数",
+      nameTextStyle: { color: "#77817d", padding: [0, 0, 8, 0] },
+      axisLabel: { color: "#77817d", formatter: (value) => value.toLocaleString() },
       splitLine: { lineStyle: { color: "rgba(96,106,100,.11)", type: "dashed" } },
     },
     series: [
       {
-        name: "满意度趋势",
+        name: "参与人数",
         type: "line",
-        smooth: 0.2,
+        smooth: true,
         symbol: "none",
-        lineStyle: { color: "#bd493d", width: 2.2, opacity: 0.64 },
-        data: paintingTrend.map((item) => item.satisfaction),
+        lineStyle: { color: "#bd493d", width: 2.4, opacity: 0.72 },
+        areaStyle: { color: "rgba(189,73,61,.06)" },
+        data: participants,
       },
       {
-        name: "年份节点",
+        name: "满意度与规模",
         type: "scatter",
         symbol: "circle",
-        encode: { x: 0, y: 1, tooltip: [0, 2, 1] },
         data: paintingTrend.map((item) => ({
-          value: [String(item.year), item.satisfaction, item.participants],
-          stage: item.stage,
-          effectSize: item.effectSize,
+          value: item.participants,
           symbol: satisfactionSymbol(item.satisfaction),
           symbolSize: sizeFor(item.participants),
           label: {
             show: true,
-            position: "right",
+            position: "top",
             distance: 8,
-            formatter: `{rate|${item.satisfaction}%}\n{people|${item.participants.toLocaleString()} 人}`,
-            rich: {
-              rate: { color: "#283432", fontSize: 14, fontWeight: 700, lineHeight: 20 },
-              people: { color: "#75807c", fontSize: 11, lineHeight: 16 },
-            },
+            formatter: `${item.participants.toLocaleString()}人`,
+            color: "#5e6864",
+            fontSize: 11,
           },
         })),
       },
@@ -77,7 +74,7 @@ function satisfactionSymbol(satisfaction) {
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="49" fill="#858987"/>
-      <circle cx="50" cy="50" r="${radius}" fill="#eee7da"/>
+      <circle cx="50" cy="50" r="${radius}" fill="#f1e6cf"/>
       <path d="M50 50 L50 12 A${radius} ${radius} 0 ${largeArc} 1 ${x.toFixed(2)} ${y.toFixed(2)} Z" fill="#bd493d"/>
     </svg>`;
   return `image://data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;

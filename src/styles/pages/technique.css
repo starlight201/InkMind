@@ -32,21 +32,21 @@
   object-fit: cover;
 }
 
-.painting-hotspots polygon {
+.painting-hotspots .hotspot-shape {
   cursor: pointer;
-  fill: rgba(255, 255, 255, 0);
-  stroke: rgba(255, 255, 255, 0);
-  stroke-width: 0.3;
+  fill: rgba(239, 65, 84, 0);
+  stroke: rgba(239, 65, 84, 0);
+  stroke-width: 0;
   vector-effect: non-scaling-stroke;
   transition: 200ms ease;
 }
 
-.painting-hotspots polygon:hover,
-.painting-hotspots polygon.active {
-  fill: rgba(255, 255, 255, 0.08);
-  stroke: rgba(255, 255, 255, 0.96);
-  stroke-width: 2.5;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+.painting-hotspots .hotspot-shape:hover,
+.painting-hotspots .hotspot-shape.active {
+  fill: rgba(239, 65, 84, 0.18);
+  stroke: rgba(239, 65, 84, 0.92);
+  stroke-width: 2.8;
+  filter: drop-shadow(0 0 4px rgba(239, 65, 84, 0.42));
 }
 
 .hotspot-label {

@@ -5,7 +5,7 @@ export function renderTopbar() {
   return `
     <header class="topbar">
       <div class="brand">
-        <div class="brand-seal">笔墨</div>
+        <img class="brand-logo" src="/logo.png" alt="InkMind logo" />
         <div>
           <div class="brand-kicker">画完就跑小组</div>
           <div class="brand-title">笔墨通心</div>

@@ -5,7 +5,7 @@ import { renderPageHeader } from "../components/header.js";
 export function renderTechniquePage() {
   return `
     <section class="page ${state.activePage === "technique" ? "active" : ""}" data-page-panel="technique">
-      ${renderPageHeader("从画面进入技法，从技法理解情绪", "中国画技法对于每种心理问题的针对性", "悬停画面区域，点击查看技法机制")}
+      ${renderPageHeader("从画面进入技法，从技法理解情绪", "画技对症详解", "悬停画面区域，点击查看技法机制")}
       <div class="content technique-layout">
         <article class="card painting-card">
           <div class="painting-stage">
@@ -18,7 +18,7 @@ export function renderTechniquePage() {
         <aside class="card technique-side">
           <div class="side-intro">
             <h3>画中有法，法中见心</h3>
-            <p>画面被划分为四个交互区域。移动鼠标观察轮廓，点击了解对应心理问题与技法特点。</p>
+            <p>画面按实际内容划分为四个互动区域：上方泼墨山水、左下浅绛山水、人物与房屋工笔、右下写意花鸟。</p>
           </div>
           ${techniqueHotspots.map(renderTechniqueButton).join("")}
         </aside>
@@ -28,9 +28,9 @@ export function renderTechniquePage() {
 
 function renderHotspot(item) {
   return `
-    <polygon points="${item.points}" data-hotspot="${item.key}" />
+    <path class="hotspot-shape" d="${item.path}" data-hotspot="${item.key}" />
     <g class="hotspot-label" data-hotspot-label="${item.key}" transform="translate(${item.label[0]} ${item.label[1]})">
-      <rect x="-7.2" y="-2.8" width="14.4" height="5.4"></rect>
+      <rect x="-8" y="-2.8" width="16" height="5.4"></rect>
       <text text-anchor="middle" dominant-baseline="middle">${item.name}</text>
     </g>`;
 }
@@ -38,7 +38,7 @@ function renderHotspot(item) {
 function renderTechniqueButton(item) {
   return `
     <button class="technique-mini" data-technique="${item.key}" style="--accent:${COLORS[item.problemKey]}">
-      <strong>${item.name} · ${item.problem}</strong>
+      <strong>${item.name} / ${item.problem}</strong>
       <span>${item.caption}</span>
     </button>`;
 }
