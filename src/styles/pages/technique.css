@@ -34,8 +34,8 @@
 
 .painting-hotspots .hotspot-shape {
   cursor: pointer;
-  fill: rgba(239, 65, 84, 0);
-  stroke: rgba(239, 65, 84, 0);
+  fill: rgba(255, 255, 255, 0);
+  stroke: rgba(255, 255, 255, 0);
   stroke-width: 0;
   vector-effect: non-scaling-stroke;
   transition: 200ms ease;
@@ -43,10 +43,10 @@
 
 .painting-hotspots .hotspot-shape:hover,
 .painting-hotspots .hotspot-shape.active {
-  fill: rgba(239, 65, 84, 0.18);
-  stroke: rgba(239, 65, 84, 0.92);
+  fill: rgba(255, 255, 255, 0.24);
+  stroke: rgba(255, 255, 255, 0.96);
   stroke-width: 2.8;
-  filter: drop-shadow(0 0 4px rgba(239, 65, 84, 0.42));
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.78));
 }
 
 .hotspot-label {
@@ -60,15 +60,21 @@
 }
 
 .hotspot-label rect {
-  fill: rgba(189, 73, 61, 0.9);
+  fill: rgba(255, 255, 255, 0.72);
+  stroke: rgba(35, 35, 32, 0.42);
+  stroke-width: 0.18px;
   rx: 1.2px;
 }
 
 .hotspot-label text {
-  fill: #fffaf3;
-  font-size: 2.1px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  fill: #151512;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif;
+  font-size: 2.25px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  paint-order: stroke fill;
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 0.45px;
 }
 
 .technique-side {
