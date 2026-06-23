@@ -2,6 +2,8 @@ import { COLORS, techniqueHotspots } from "../data/mock-data.js";
 import { state } from "../state.js";
 import { renderPageHeader } from "../components/header.js";
 
+const assetBase = import.meta.env.BASE_URL;
+
 export function renderTechniquePage() {
   return `
     <section class="page ${state.activePage === "technique" ? "active" : ""}" data-page-panel="technique">
@@ -9,7 +11,7 @@ export function renderTechniquePage() {
       <div class="content technique-layout">
         <article class="card painting-card">
           <div class="painting-stage">
-            <img src="/images/chinese-painting.jpg" alt="中国画技法互动图" />
+            <img src="${assetBase}images/chinese-painting.jpg" alt="中国画技法互动图" />
             <svg class="painting-hotspots" viewBox="0 0 100 100" preserveAspectRatio="none">
               ${techniqueHotspots.map(renderHotspot).join("")}
             </svg>

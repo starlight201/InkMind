@@ -1,11 +1,13 @@
 import { MOCK_NOTICE } from "../data/mock-data.js";
 import { navItems, state } from "../state.js";
 
+const assetBase = import.meta.env.BASE_URL;
+
 export function renderTopbar() {
   return `
     <header class="topbar">
       <div class="brand">
-        <img class="brand-logo" src="/logo.png" alt="InkMind logo" />
+        <img class="brand-logo" src="${assetBase}logo.png" alt="InkMind logo" />
         <div>
           <div class="brand-kicker">画完就跑小组</div>
           <div class="brand-title">笔墨通心</div>
