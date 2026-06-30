@@ -1,13 +1,13 @@
 export const paintingTrend = [
-  { year: 2016, participants: 1650, satisfaction: 73.8, effectSize: 0.4, stage: "探索期" },
-  { year: 2017, participants: 2300, satisfaction: 75.2, effectSize: 0.45, stage: "探索期" },
-  { year: 2018, participants: 3800, satisfaction: 78.5, effectSize: 0.49, stage: "规范期" },
+  { year: 2016, participants: 1600, satisfaction: 73.8, effectSize: 0.4, stage: "探索期" },
+  { year: 2017, participants: 2350, satisfaction: 75.2, effectSize: 0.45, stage: "探索期" },
+  { year: 2018, participants: 3850, satisfaction: 78.5, effectSize: 0.49, stage: "规范期" },
   { year: 2019, participants: 5200, satisfaction: 80.1, effectSize: 0.53, stage: "规范期" },
-  { year: 2020, participants: 8900, satisfaction: 83.4, effectSize: 0.61, stage: "爆发期" },
-  { year: 2021, participants: 13400, satisfaction: 84.6, effectSize: 0.65, stage: "爆发期" },
+  { year: 2020, participants: 8500, satisfaction: 83.4, effectSize: 0.61, stage: "推广期" },
+  { year: 2021, participants: 13400, satisfaction: 84.6, effectSize: 0.65, stage: "推广期" },
   { year: 2022, participants: 19000, satisfaction: 86.2, effectSize: 0.7, stage: "深化期" },
   { year: 2023, participants: 24500, satisfaction: 87.5, effectSize: 0.73, stage: "深化期" },
-  { year: 2024, participants: 31000, satisfaction: 89, effectSize: 0.76, stage: "成熟期" },
+  { year: 2024, participants: 30000, satisfaction: 89, effectSize: 0.76, stage: "成熟期" },
   { year: 2025, participants: 38500, satisfaction: 90.5, effectSize: 0.81, stage: "成熟期" },
 ];
 
@@ -38,7 +38,7 @@ export const techniqueHotspots = [
     principle: "注意力恢复与空间拓展",
     caption: "左下浅绛山水留白开阔，为紧绷思绪让出空间",
     description:
-      "持续学习压力可能造成注意力疲劳，并压缩心理空间。浅绛山水通过自然色彩、远近层次、留白和开阔构图，形成舒缓的视觉体验。画面中的空间延展感有助于体验者暂时从紧绷状态中抽离。",
+      "持续学习压力可能造成注意力疲劳，并压缩心理空间。浅绛山水通过自然色彩、远近层次、留白和开阔构图，形成舒缓的视觉体验。画面中的空间延展感有助于体验者暂时从紧张状态中抽离。",
     path: `${topBoundaryLeft} ${leftBoundary.replace("M54 35", "")} L45 100 L0 100 L0 36 Z`,
     label: [23, 70],
   },

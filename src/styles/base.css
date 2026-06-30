@@ -1,8 +1,10 @@
 :root {
-  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  font-family: var(--font-hand);
   color: #263230;
   background: #e6d6b6;
   font-synthesis: none;
+  --font-hand: "Ma Shan Zheng", "LXGW WenKai Screen", "STKaiti", "KaiTi", serif;
+  --font-calligraphy: "Ma Shan Zheng", "LXGW WenKai Screen", "STKaiti", "KaiTi", serif;
   --paper: #f2e5c8;
   --paper-light: rgba(255, 252, 243, 0.78);
   --ink: #263230;
@@ -71,4 +73,30 @@ body::after {
 button {
   font: inherit;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #app {
+    min-width: 0;
+    height: auto;
+    min-height: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-attachment: scroll;
+  }
+
+  body::after {
+    inset: 8px;
+    opacity: 0.08;
+    background-size: 132px 82px;
+  }
 }

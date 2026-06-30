@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>柱状图示例复刻 v2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: start center;
+        background: #eee1b7;
+        font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+        color: #1c2624;
+      }
+
+      .phone {
+        position: relative;
+        width: 940px;
+        height: 2048px;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(236, 218, 173, 0.26), rgba(236, 218, 173, 0.26)),
+          url("../宣纸.png") center top / cover,
+          #eadcae;
+      }
+
+      .status {
+        height: 116px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 84px 0 103px;
+        background: #fff;
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .phone-icons {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .signal {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: end;
+        gap: 5px;
+        height: 36px;
+      }
+
+      .signal i {
+        display: block;
+        width: 8px;
+        border-radius: 5px;
+        background: #0c0c0c;
+      }
+
+      .signal i:nth-child(1) { height: 13px; }
+      .signal i:nth-child(2) { height: 20px; }
+      .signal i:nth-child(3) { height: 27px; }
+      .signal i:nth-child(4) { height: 34px; }
+
+      .battery {
+        position: relative;
+        width: 62px;
+        height: 38px;
+        border-radius: 10px;
+        background: #141414;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .battery::after {
+        content: "";
+        position: absolute;
+        right: -7px;
+        top: 12px;
+        width: 7px;
+        height: 14px;
+        border-radius: 0 5px 5px 0;
+        background: #cfcfcf;
+      }
+
+      .nav {
+        height: 119px;
+        display: flex;
+        align-items: center;
+        gap: 94px;
+        padding-left: 43px;
+        background: #fff;
+        border-bottom: 7px solid #1599d6;
+      }
+
+      .close {
+        position: relative;
+        width: 40px;
+        height: 40px;
+      }
+
+      .close::before,
+      .close::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: -5px;
+        width: 5px;
+        height: 54px;
+        border-radius: 2px;
+        background: #171717;
+      }
+
+      .close::before { transform: rotate(45deg); }
+      .close::after { transform: rotate(-45deg); }
+
+      .nav-title {
+        max-width: 660px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 36px;
+        font-weight: 900;
+      }
+
+      .hero {
+        position: relative;
+        height: 400px;
+        padding-top: 50px;
+        background:
+          radial-gradient(circle at 56% 43%, rgba(255,255,245,.2), transparent 38%),
+          linear-gradient(rgba(228, 209, 164, .14), rgba(228, 209, 164, .14));
+      }
+
+      .hero-copy {
+        margin-left: 120px;
+      }
+
+      .team {
+        color: #a14036;
+        font-size: 29px;
+        font-weight: 900;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        font-size: 64px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        margin-bottom: 38px;
+      }
+
+      .platform {
+        margin-left: -126px;
+        color: #a13c34;
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+
+      .page-title {
+        margin-left: -126px;
+        margin-top: 28px;
+        font-size: 61px;
+        font-weight: 900;
+      }
+
+      .tab {
+        position: absolute;
+        right: -34px;
+        top: 48px;
+        width: 192px;
+        height: 138px;
+        padding: 16px;
+        border-radius: 22px;
+        background: rgba(255,255,249,.82);
+        box-shadow: 0 9px 25px rgba(89, 67, 38, .16);
+      }
+
+      .tab-inner {
+        height: 100%;
+        border-radius: 15px;
+        background: #c83f37;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-left: 36px;
+        gap: 16px;
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .chart-card {
+        position: absolute;
+        left: 0;
+        top: 635px;
+        width: 940px;
+        height: 950px;
+        border-radius: 0 22px 22px 0;
+        background:
+          radial-gradient(circle at 55% 43%, rgba(255, 250, 222, 0.72), transparent 39%),
+          linear-gradient(90deg, rgba(255, 255, 250, 0.95), rgba(255, 252, 239, 0.84));
+        box-shadow:
+          0 13px 31px rgba(77, 59, 31, .13),
+          inset 0 0 0 1px rgba(118, 101, 70, .08);
+      }
+
+      .chart-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        opacity: .22;
+        mix-blend-mode: multiply;
+        background:
+          repeating-linear-gradient(0deg, transparent 0 12px, rgba(118, 99, 55, .035) 13px),
+          repeating-linear-gradient(90deg, transparent 0 15px, rgba(118, 99, 55, .025) 16px);
+      }
+
+      .chart-title {
+        position: absolute;
+        left: -7px;
+        top: 55px;
+        margin: 0;
+        font-size: 51px;
+        line-height: 1.08;
+        font-weight: 900;
+      }
+
+      .chart-sub {
+        position: absolute;
+        left: 0;
+        top: 149px;
+        margin: 0;
+        color: #69716d;
+        font-size: 31px;
+        line-height: 1.25;
+        font-weight: 500;
+      }
+
+      .chart {
+        position: absolute;
+        left: 0;
+        top: 263px;
+        width: 900px;
+        height: 628px;
+      }
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .grid {
+        stroke: rgba(105, 96, 73, .24);
+        stroke-width: 1.25;
+        stroke-dasharray: 8 8;
+      }
+
+      .axis-label {
+        fill: #202a27;
+        font-size: 29px;
+        font-weight: 900;
+      }
+
+      .x-label {
+        fill: #616b67;
+        font-size: 28px;
+        font-weight: 500;
+      }
+
+      .value {
+        fill: #2c3532;
+        font-size: 28px;
+        font-weight: 800;
+      }
+
+      .bar-hit {
+        fill: transparent;
+        cursor: pointer;
+      }
+
+      .tip {
+        position: absolute;
+        left: 530px;
+        top: 592px;
+        width: 174px;
+        height: 143px;
+        padding: 26px 25px;
+        border-radius: 15px;
+        border: 1px solid rgba(93, 83, 62, .16);
+        background: rgba(255,255,255,.96);
+        box-shadow: 0 10px 26px rgba(70, 56, 34, .17);
+        font-size: 30px;
+        line-height: 1.4;
+        font-weight: 900;
+        transition: left .16s ease, top .16s ease;
+      }
+
+      .tip span {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .cards {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 1650px;
+        height: 340px;
+        display: flex;
+        gap: 29px;
+        padding-left: 0;
+      }
+
+      .info-card {
+        width: 606px;
+        height: 320px;
+        flex: 0 0 auto;
+        border-radius: 16px;
+        background: rgba(255,255,250,.87);
+        border: 2px solid rgba(168, 58, 52, .85);
+        padding: 41px 30px;
+      }
+
+      .info-card.secondary {
+        width: 460px;
+        border-color: rgba(101, 132, 117, .28);
+      }
+
+      .info-head {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-bottom: 43px;
+      }
+
+      .dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #bf3e36;
+      }
+
+      .secondary .dot { background: #4e8674; }
+
+      .info-title {
+        font-size: 39px;
+        font-weight: 900;
+      }
+
+      .tag {
+        margin-left: auto;
+        color: #b94b45;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .info-body {
+        color: #69716d;
+        font-size: 29px;
+        line-height: 1.78;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone">
+      <div class="status">
+        <div>19:11</div>
+        <div class="phone-icons">
+          <div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div>4G</div>
+          <div class="battery">64</div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="close" aria-hidden="true"></div>
+        <div class="nav-title">笔墨通心｜中国画美育疗法数据...</div>
+      </div>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="team">画完就跑小组</div>
+          <div class="brand">笔墨通心</div>
+          <div class="platform">中国画美育疗法数据可视化平台</div>
+          <div class="page-title">心理现状统计</div>
+        </div>
+        <div class="tab"><div class="tab-inner">01&nbsp;&nbsp;心理</div></div>
+      </section>
+
+      <section class="chart-card" aria-label="2025 年四类心理问题患病率">
+        <h1 class="chart-title">2025 年四类心理问题患病率</h1>
+        <p class="chart-sub">四类问题可能重叠，患病率不做合计，点击后聚焦对应趋势。</p>
+
+        <div class="chart">
+          <svg viewBox="0 0 900 628" role="img" aria-label="学习压力 71%，自我否认 35%，抑郁 37%，焦虑 34%">
+            <defs>
+              <filter id="inkNoise" x="-10%" y="-55%" width="120%" height="210%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.034 0.21" numOctaves="4" seed="12" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+                <feGaussianBlur stdDeviation=".28" />
+              </filter>
+              <filter id="bleed" x="-15%" y="-80%" width="130%" height="260%">
+                <feGaussianBlur stdDeviation="2.3" />
+              </filter>
+              <filter id="shadow" x="-15%" y="-80%" width="130%" height="260%">
+                <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#57442a" flood-opacity=".13" />
+              </filter>
+
+              <linearGradient id="gStress" x1="0" x2="1">
+                <stop offset="0" stop-color="#111310" stop-opacity=".98" />
+                <stop offset=".18" stop-color="#2c271f" stop-opacity=".94" />
+                <stop offset=".5" stop-color="#7e6d54" stop-opacity=".72" />
+                <stop offset=".78" stop-color="#c8bda7" stop-opacity=".34" />
+                <stop offset="1" stop-color="#f4ecd8" stop-opacity=".04" />
+              </linearGradient>
+              <linearGradient id="gPurple" x1="0" x2="1">
+                <stop offset="0" stop-color="#2c2639" stop-opacity=".97" />
+                <stop offset=".25" stop-color="#58436e" stop-opacity=".9" />
+                <stop offset=".63" stop-color="#9379aa" stop-opacity=".57" />
+                <stop offset="1" stop-color="#f0e5f0" stop-opacity=".06" />
+              </linearGradient>
+              <linearGradient id="gGreen" x1="0" x2="1">
+                <stop offset="0" stop-color="#182a25" stop-opacity=".98" />
+                <stop offset=".24" stop-color="#3a6457" stop-opacity=".88" />
+                <stop offset=".64" stop-color="#87ac9a" stop-opacity=".55" />
+                <stop offset="1" stop-color="#edf3ec" stop-opacity=".06" />
+              </linearGradient>
+              <linearGradient id="gRed" x1="0" x2="1">
+                <stop offset="0" stop-color="#982720" stop-opacity=".96" />
+                <stop offset=".25" stop-color="#bd5248" stop-opacity=".86" />
+                <stop offset=".66" stop-color="#df978a" stop-opacity=".54" />
+                <stop offset="1" stop-color="#f7e3dd" stop-opacity=".06" />
+              </linearGradient>
+
+              <path id="wideStroke" d="M4 25 C29 5 70 9 112 12 C182 17 251 7 320 11 C410 16 516 5 610 9 C631 10 647 17 653 25 C622 31 580 29 537 29 C437 28 327 31 227 35 C136 38 62 44 14 36 C-3 33 -8 29 4 25 Z" />
+            </defs>
+
+            <g transform="translate(176 16)">
+              <line class="grid" x1="0" y1="0" x2="0" y2="516" />
+              <line class="grid" x1="164" y1="0" x2="164" y2="516" />
+              <line class="grid" x1="328" y1="0" x2="328" y2="516" />
+              <line class="grid" x1="492" y1="0" x2="492" y2="516" />
+              <line class="grid" x1="656" y1="0" x2="656" y2="516" />
+            </g>
+
+            <g>
+              <text class="axis-label" x="35" y="107">学习压力</text>
+              <text class="axis-label" x="35" y="252">自我否认</text>
+              <text class="axis-label" x="96" y="400">抑郁</text>
+              <text class="axis-label" x="96" y="546">焦虑</text>
+              <text class="x-label" x="151" y="600">0%</text>
+              <text class="x-label" x="309" y="600">20%</text>
+              <text class="x-label" x="474" y="600">40%</text>
+              <text class="x-label" x="638" y="600">60%</text>
+              <text class="x-label" x="800" y="600">80%</text>
+            </g>
+
+            <g transform="translate(176 0)" filter="url(#shadow)">
+              <g class="bar" data-name="学习压力" data-value="71" data-left="765" data-top="367">
+                <rect x="1" y="63" width="580" height="42" rx="12" fill="rgba(255,253,242,.16)" stroke="rgba(105,94,72,.045)" />
+                <g transform="translate(0 58) scale(.88 1.38)"><use href="#wideStroke" fill="url(#gStress)" filter="url(#inkNoise)" /></g>
+                <g transform="translate(0 58) scale(.88 1.38)" opacity=".34"><use href="#wideStroke" fill="#1d1b17" filter="url(#bleed)" /></g>
+                <ellipse cx="20" cy="90" rx="33" ry="24" fill="#121511" filter="url(#inkNoise)" />
+                <ellipse cx="5" cy="88" rx="15" ry="18" fill="#101411" opacity=".78" filter="url(#inkNoise)" />
+                <path d="M30 77 C151 64 302 101 518 74" stroke="#30281f" stroke-width="9" stroke-linecap="round" opacity=".28" filter="url(#inkNoise)" />
+                <text class="value" x="590" y="98">71%</text>
+                <rect class="bar-hit" x="-18" y="48" width="630" height="75" />
+              </g>
+
+              <g class="bar" data-name="自我否认" data-value="35" data-left="530" data-top="592">
+                <g transform="translate(0 204) scale(.46 1.33)"><use href="#wideStroke" fill="url(#gPurple)" filter="url(#inkNoise)" /></g>
+                <ellipse cx="18" cy="235" rx="30" ry="22" fill="#30273c" opacity=".92" filter="url(#inkNoise)" />
+                <ellipse cx="4" cy="235" rx="13" ry="17" fill="#2f273b" opacity=".72" filter="url(#inkNoise)" />
+                <path d="M21 221 C85 207 168 246 276 217" stroke="#3f3450" stroke-width="8" stroke-linecap="round" opacity=".34" filter="url(#inkNoise)" />
+                <text class="value" x="300" y="243">35%</text>
+                <rect class="bar-hit" x="-18" y="194" width="370" height="76" />
+              </g>
+
+              <g class="bar" data-name="抑郁" data-value="37" data-left="552" data-top="736">
+                <g transform="translate(0 351) scale(.49 1.32)"><use href="#wideStroke" fill="url(#gGreen)" filter="url(#inkNoise)" /></g>
+                <ellipse cx="18" cy="382" rx="30" ry="22" fill="#172b26" opacity=".93" filter="url(#inkNoise)" />
+                <ellipse cx="4" cy="381" rx="13" ry="17" fill="#172b26" opacity=".74" filter="url(#inkNoise)" />
+                <path d="M26 369 C105 353 207 400 296 364" stroke="#28463d" stroke-width="8" stroke-linecap="round" opacity=".34" filter="url(#inkNoise)" />
+                <text class="value" x="320" y="390">37%</text>
+                <rect class="bar-hit" x="-18" y="341" width="390" height="76" />
+              </g>
+
+              <g class="bar" data-name="焦虑" data-value="34" data-left="522" data-top="880">
+                <g transform="translate(0 496) scale(.45 1.32)"><use href="#wideStroke" fill="url(#gRed)" filter="url(#inkNoise)" /></g>
+                <ellipse cx="18" cy="527" rx="30" ry="22" fill="#a12a22" opacity=".92" filter="url(#inkNoise)" />
+                <ellipse cx="4" cy="528" rx="13" ry="17" fill="#982720" opacity=".76" filter="url(#inkNoise)" />
+                <path d="M25 514 C109 499 198 544 281 510" stroke="#a4362f" stroke-width="8" stroke-linecap="round" opacity=".35" filter="url(#inkNoise)" />
+                <text class="value" x="300" y="535">34%</text>
+                <rect class="bar-hit" x="-18" y="486" width="360" height="76" />
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <output id="tip" class="tip" aria-live="polite"><span>自我否认</span><span>35%</span></output>
+      </section>
+
+      <section class="cards">
+        <article class="info-card">
+          <div class="info-head">
+            <i class="dot"></i>
+            <div class="info-title">焦虑</div>
+            <div class="tag">思虑紧绷</div>
+          </div>
+          <div class="info-body">多由对未来不确定性、完美主义引发，表现为心神紧绷、思虑过度、回避困难。</div>
+        </article>
+        <article class="info-card secondary">
+          <div class="info-head">
+            <i class="dot"></i>
+            <div class="info-title">抑郁</div>
+          </div>
+          <div class="info-body">长期负面情绪无法疏解，表现为心境持续低落、兴趣减弱和习惯性悲观。</div>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const tip = document.querySelector("#tip");
+      document.querySelectorAll(".bar").forEach((bar) => {
+        const show = () => {
+          tip.style.left = `${bar.dataset.left}px`;
+          tip.style.top = `${bar.dataset.top}px`;
+          tip.innerHTML = `<span>${bar.dataset.name}</span><span>${bar.dataset.value}%</span>`;
+        };
+        bar.addEventListener("pointerenter", show);
+        bar.addEventListener("click", show);
+      });
+    </script>
+  </body>
+</html>

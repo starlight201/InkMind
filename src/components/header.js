@@ -1,4 +1,3 @@
-import { MOCK_NOTICE } from "../data/mock-data.js";
 import { navItems, state } from "../state.js";
 
 const assetBase = import.meta.env.BASE_URL;
@@ -35,7 +34,6 @@ export function renderPageHeader(eyebrow, title, summary) {
       </div>
       <div class="header-side">
         <span>${summary}</span>
-        <span class="mock-badge">${MOCK_NOTICE}</span>
       </div>
     </div>`;
 }

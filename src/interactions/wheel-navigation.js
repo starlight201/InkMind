@@ -10,6 +10,8 @@ export function bindWheelNavigation({ state, onNavigate }) {
   window.addEventListener(
     "wheel",
     (event) => {
+      if (window.matchMedia?.("(max-width: 768px)").matches) return;
+
       if (event.deltaY <= 0) {
         accumulatedDelta = 0;
         return;

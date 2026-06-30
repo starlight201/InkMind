@@ -1,6 +1,7 @@
 import { radarComparison, radarDimensions, therapyCatalog } from "../data/mock-data.js";
 import { formatNumber } from "../utils/format-number.js";
 import { chartTooltip } from "./chart-theme.js";
+import { axisText, INK_FONT } from "./ink-brush.js";
 
 export function renderRadarChart(chart, selectedTherapy) {
   const therapy = therapyCatalog.find((item) => item.key === selectedTherapy);
@@ -13,13 +14,13 @@ export function renderRadarChart(chart, selectedTherapy) {
         formatter: ({ name, value }) =>
           [`<strong>${name}</strong>`, ...radarDimensions.map((item, index) => `${item.name}: ${formatNumber(value[index])}`)].join("<br/>"),
       },
-      legend: { bottom: 10, left: "center", textStyle: { color: "#64706c", fontSize: 13 } },
+      legend: { bottom: 10, left: "center", textStyle: axisText(13, 600, "#64706c") },
       radar: {
         center: ["50%", "48%"],
         radius: "68%",
         splitNumber: 5,
         indicator: radarDimensions.map((item) => ({ name: `${item.name}\n${item.direction}`, max: 100 })),
-        axisName: { color: "#4f5d59", fontSize: 13, lineHeight: 19, fontWeight: 700 },
+        axisName: { color: "#4f5d59", fontFamily: INK_FONT, fontSize: 13, lineHeight: 19, fontWeight: 700 },
         axisLine: { lineStyle: { color: "rgba(85,96,91,.2)" } },
         splitLine: { lineStyle: { color: "rgba(85,96,91,.18)" } },
         splitArea: { areaStyle: { color: ["rgba(255,253,247,.3)", "rgba(232,225,213,.2)"] } },

@@ -84,3 +84,30 @@
   -webkit-line-clamp: 4;
 }
 
+@media (max-width: 768px) {
+  .status-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .chart-wrap {
+    height: auto;
+    min-height: 330px;
+    padding: 4px 8px 12px;
+  }
+
+  .analysis-row {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .problem-card p {
+    -webkit-line-clamp: unset;
+  }
+}
+

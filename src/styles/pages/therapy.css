@@ -81,3 +81,32 @@
   transform: scale(1.08);
 }
 
+@media (max-width: 768px) {
+  .therapy-layout {
+    grid-template-rows: none;
+  }
+
+  .filter-tabs,
+  .therapy-tabs {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .filter-tab,
+  .therapy-tab {
+    flex: 1 1 calc(50% - 6px);
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .therapy-chart-wrap {
+    min-height: 420px;
+    padding: 4px 8px 0;
+  }
+
+  .therapy-actions {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 14px 18px;
+  }
+}
+

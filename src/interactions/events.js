@@ -5,12 +5,15 @@ import { techniqueModalContent, therapyModalContent } from "./modal-content.js";
 import { renderRadarSummary } from "./radar-summary.js";
 import { bindWheelNavigation } from "./wheel-navigation.js";
 
+const MOBILE_QUERY = "(max-width: 768px)";
+
 export function bindEvents({ state, charts }) {
   document.addEventListener("click", (event) => handleClick(event, state, charts));
   bindHotspotHover(() => state.selectedHotspot);
   bindWheelNavigation({ state, onNavigate: (page) => navigateTo(page, state, charts) });
   window.addEventListener("keydown", (event) => event.key === "Escape" && closeModal());
   window.addEventListener("resize", () => resizeCharts(charts));
+  if (isMobileLayout()) requestAnimationFrame(() => scrollToPanel(state.activePage, "auto"));
 }
 
 function handleClick(event, state, charts) {
@@ -43,6 +46,7 @@ function navigateTo(page, state, charts) {
   document.querySelectorAll("[data-page-panel]").forEach((panel) => {
     panel.classList.toggle("active", panel.dataset.pagePanel === page);
   });
+  if (isMobileLayout()) scrollToPanel(page);
   requestAnimationFrame(() => resizeCharts(charts));
 }
 
@@ -71,4 +75,12 @@ function selectRadarTherapy(key, state, charts) {
   });
   renderRadarChart(charts.radar, key);
   renderRadarSummary(key);
+}
+
+function isMobileLayout() {
+  return window.matchMedia?.(MOBILE_QUERY).matches ?? window.innerWidth <= 768;
+}
+
+function scrollToPanel(page, behavior = "smooth") {
+  document.querySelector(`[data-page-panel="${page}"]`)?.scrollIntoView({ block: "start", behavior });
 }

@@ -18,7 +18,7 @@
 
 .summary-card h2 {
   margin: 0;
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-hand);
   font-size: 23px;
 }
 
@@ -99,5 +99,24 @@
   border: 1px solid rgba(189, 73, 61, 0.16);
   border-radius: 8px;
   background: rgba(249, 236, 228, 0.65);
+}
+
+@media (max-width: 768px) {
+  .comparison-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-card .card-heading {
+    align-items: stretch;
+  }
+
+  .radar-wrap {
+    min-height: 420px;
+    padding: 0 4px 10px;
+  }
+
+  .summary-card {
+    padding: 16px;
+  }
 }
 

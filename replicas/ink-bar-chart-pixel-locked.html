@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>柱状图像素锁定版</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: start center;
+        background: #d8c896;
+        font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      }
+
+      .phone {
+        position: relative;
+        width: min(100vw, 940px);
+        aspect-ratio: 1204 / 2622;
+        overflow: hidden;
+        background: #eadcae;
+      }
+
+      .reference {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .hotspot {
+        position: absolute;
+        left: calc(var(--x) / 1204 * 100%);
+        top: calc(var(--y) / 2622 * 100%);
+        width: calc(var(--w) / 1204 * 100%);
+        height: calc(var(--h) / 2622 * 100%);
+        border: 0;
+        padding: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .live-tip {
+        position: absolute;
+        left: calc(var(--tip-x) / 1204 * 100%);
+        top: calc(var(--tip-y) / 2622 * 100%);
+        width: calc(218 / 1204 * 100%);
+        height: calc(180 / 2622 * 100%);
+        padding: calc(31 / 2622 * 100%) calc(31 / 1204 * 100%);
+        border: 1px solid rgba(91, 83, 63, 0.16);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 10px 26px rgba(70, 56, 34, 0.17);
+        color: #202927;
+        font-size: clamp(18px, 3.2vw, 31px);
+        line-height: 1.42;
+        font-weight: 900;
+        opacity: 0;
+        transform: translateY(3px);
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        pointer-events: none;
+      }
+
+      .live-tip.is-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .live-tip span {
+        display: block;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone" aria-label="笔墨通心心理现状统计页面">
+      <img class="reference" src="../柱状图示例.png" alt="" />
+
+      <button class="hotspot" style="--x: 205; --y: 1155; --w: 780; --h: 86" data-name="学习压力" data-value="71" data-tip-x="938" data-tip-y="1162" aria-label="学习压力 71%"></button>
+      <button class="hotspot" style="--x: 205; --y: 1335; --w: 420; --h: 86" data-name="自我否认" data-value="35" data-tip-x="678" data-tip-y="1587" aria-label="自我否认 35%"></button>
+      <button class="hotspot" style="--x: 205; --y: 1525; --w: 440; --h: 86" data-name="抑郁" data-value="37" data-tip-x="704" data-tip-y="1587" aria-label="抑郁 37%"></button>
+      <button class="hotspot" style="--x: 205; --y: 1705; --w: 410; --h: 86" data-name="焦虑" data-value="34" data-tip-x="676" data-tip-y="1587" aria-label="焦虑 34%"></button>
+
+      <output id="liveTip" class="live-tip" aria-live="polite"></output>
+    </main>
+
+    <script>
+      const liveTip = document.querySelector("#liveTip");
+
+      document.querySelectorAll(".hotspot").forEach((hotspot) => {
+        const show = () => {
+          liveTip.style.setProperty("--tip-x", hotspot.dataset.tipX);
+          liveTip.style.setProperty("--tip-y", hotspot.dataset.tipY);
+          liveTip.innerHTML = `<span>${hotspot.dataset.name}</span><span>${hotspot.dataset.value}%</span>`;
+          liveTip.classList.add("is-active");
+        };
+
+        hotspot.addEventListener("pointerenter", show);
+        hotspot.addEventListener("focus", show);
+        hotspot.addEventListener("click", show);
+      });
+    </script>
+  </body>
+</html>

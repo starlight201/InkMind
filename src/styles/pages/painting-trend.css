@@ -20,7 +20,7 @@
   right: 16px;
   bottom: 8px;
   color: rgba(189, 73, 61, 0.1);
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-hand);
   font-size: 68px;
   content: attr(data-mark);
 }
@@ -55,7 +55,7 @@
 .trend-notes h3 {
   margin: 0 0 8px;
   color: var(--red);
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-hand);
   font-size: 17px;
 }
 
@@ -67,8 +67,107 @@
 }
 
 .trend-chart-wrap {
+  position: relative;
   flex: 1;
   min-height: 0;
   padding: 8px 18px 16px;
+  overflow: hidden;
+  background: rgba(255, 252, 243, 0.18);
+}
+
+.trend-chart-wrap::before {
+  position: absolute;
+  top: 6px;
+  right: 18px;
+  bottom: 14px;
+  left: 18px;
+  content: "";
+  pointer-events: none;
+  border: 1px solid rgba(113, 87, 48, 0.12);
+  background:
+    linear-gradient(90deg, rgba(139, 111, 66, 0.08), transparent 88px, transparent calc(100% - 88px), rgba(139, 111, 66, 0.08)),
+    radial-gradient(circle at 86px 74px, rgba(111, 74, 43, 0.08), transparent 98px),
+    radial-gradient(circle at calc(100% - 96px) calc(100% - 72px), rgba(189, 73, 61, 0.055), transparent 92px);
+  box-shadow: inset 0 0 22px rgba(83, 72, 55, 0.045);
+}
+
+.trend-chart-wrap::after {
+  position: absolute;
+  right: 38px;
+  bottom: 28px;
+  width: 44px;
+  height: 44px;
+  color: rgba(189, 73, 61, 0.18);
+  font-family: var(--font-hand);
+  font-size: 20px;
+  line-height: 44px;
+  text-align: center;
+  content: "印";
+  pointer-events: none;
+  border: 2px solid rgba(189, 73, 61, 0.16);
+}
+
+.trend-chart-wrap .chart {
+  position: relative;
+  z-index: 1;
+}
+
+.trend-main-card .card-heading h2 {
+  color: #111815;
+  font-size: 34px;
+  letter-spacing: 0.03em;
+}
+
+.trend-main-card .card-heading p {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .trend-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    min-height: 128px;
+    padding: 18px;
+  }
+
+  .stat-card::after {
+    font-size: 56px;
+  }
+
+  .stat-value {
+    margin-top: 10px;
+    font-size: 34px;
+  }
+
+  .trend-chart-wrap {
+    min-height: 560px;
+    padding: 8px 4px 12px;
+  }
+
+  .trend-chart-wrap::before {
+    top: 6px;
+    right: 4px;
+    bottom: 12px;
+    left: 4px;
+  }
+
+  .trend-chart-wrap::after {
+    right: 18px;
+    bottom: 22px;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+    line-height: 34px;
+  }
+
+  .trend-main-card .card-heading h2 {
+    font-size: 30px;
+  }
 }
 
